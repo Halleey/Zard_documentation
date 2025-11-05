@@ -20,6 +20,7 @@ body {
   overflow: hidden;
 }
 
+/* Sidebar */
 #sidebar {
   width: var(--sidebar-width);
   background: rgba(20, 16, 27, 0.95);
@@ -53,7 +54,7 @@ body {
 }
 
 #sidebar a:hover {
-  background: rgba(123, 47, 247, 0.2);
+  background: rgba(24, 21, 31, 0.2);
 }
 
 #content {
@@ -119,23 +120,35 @@ pre {
 .top-buttons button:hover {
   color: var(--purple-neon);
 }
-
-body.light {
-  background: var(--bg-light);
-  color: var(--text-light);
+body.light #sidebar {
+  background: #e6e0f0; 
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-body.light #sidebar {
-  background: #f0eef9;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+body.light #sidebar h2 {
+  background: var(--accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.light #sidebar a {
+  color: #0a0a0a; 
+  font-weight: 500;
 }
 
 body.light #sidebar a:hover {
-  background: rgba(159, 68, 211, 0.2);
+  background: rgba(159, 68, 211, 0.15);
+  color: #000; 
+}
+
+body.light {
+  background: var(--bg-light);
+  color: #1b1b1f;
 }
 
 body.light #content {
   background: var(--bg-light);
+  color: #111;
 }
 
 /* Responsive */

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — Lists</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Introduction</a>
+    <a href="syntax.html">Syntax</a>
+    <a href="structs.html">Structs</a>
+    <a href="lists.html" style="background: rgba(123,47,247,0.2);">Lists</a>
+    <a href="llvm.html">LLVM Backend</a>
+    <a href="runtime.html">Runtime C</a>
+    <a href="examples.html">Examples</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="lists">
+      <h1>Lists</h1>
+      <p>
+        <strong>Lists</strong> in Zard are dynamic containers capable of holding multiple elements of the same type.  
+        They support addition, removal, access, and clearing operations, all type-safe and efficient.
+      </p>
+
+      <h2>Declaring Lists</h2>
+      <p>
+        If a list is created empty, the type must be declared explicitly:
+      </p>
+      <pre><code class="language-zard">
+List&lt;int&gt; numbers;
+      </code></pre>
+
+      <p>
+        If initialized with values, the compiler infers the type automatically from the first element:
+      </p>
+      <pre><code class="language-zard">
+List nomes = ("zard", "angel");
+      </code></pre>
+
+      <p>
+        Mixing incompatible types will cause a compile-time error:
+      </p>
+      <pre><code class="language-zard">
+# ❌ Invalid example — inferred as &lt;double&gt;, but second element is &lt;string&gt;
+List test = (3.14, "hello");
+      </code></pre>
+
+      <h2>Adding Elements</h2>
+      <p>
+        Use <code>add()</code> to insert a single element, and <code>addAll()</code> to add multiple at once:
+      </p>
+      <pre><code class="language-zard">
+numbers.add(3);
+int x = 2;
+numbers.addAll(3, 4, 5, x);
+      </code></pre>
+
+      <h2>Getting the Size</h2>
+      <p>
+        The <code>size()</code> method returns the total number of elements.
+        It must be called within an expression or assignment.
+      </p>
+      <pre><code class="language-zard">
+int z = numbers.size();
+print(z);
+print(numbers.size());
+      </code></pre>
+
+      <h2>Removing Elements</h2>
+      <p>
+        Remove an element by its index using <code>remove(index)</code>:
+      </p>
+      <pre><code class="language-zard">
+numbers.remove(0);
+      </code></pre>
+
+      <h2>Accessing Elements</h2>
+      <p>
+        Use <code>get(index)</code> to retrieve an element by its position:
+      </p>
+      <pre><code class="language-zard">
+print(numbers.get(1));
+      </code></pre>
+
+      <h2>Clearing a List</h2>
+      <p>
+        The <code>clear()</code> method removes all elements from the list:
+      </p>
+      <pre><code class="language-zard">
+numbers.clear();
+      </code></pre>
+
+      <h2>Full Example</h2>
+      <pre><code class="language-zard">
+main {
+
+  # If instantiated empty, type must be declared
+  List&lt;int&gt; numbers;
+
+  # If initialized with values, type is inferred
+  List nomes = ("zard", "angel");
+
+  # Adding values
+  numbers.add(3);
+  int x = 2;
+  numbers.addAll(3,4,5,x);
+
+  # Getting size
+  int z = numbers.size();
+  print(z);
+  print(numbers.size());
+
+  # Removing
+  numbers.remove(0);
+
+  # Accessing
+  print(numbers.get(1));
+
+  # Clearing
+  numbers.clear();
+}
+      </code></pre>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

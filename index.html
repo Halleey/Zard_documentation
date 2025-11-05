@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zard Language Documentation</title>
+  <title>Zard Language — Overview</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="sidebar">
     <h2>Zard Docs</h2>
-    <a href="#intro">Introduction</a>
-    <a href="#syntax">Syntax</a>
-    <a href="#structs">Structs</a>
-    <a href="#lists">Lists</a>
-    <a href="#llvm">LLVM Backend</a>
-    <a href="#runtime">Runtime C</a>
-    <a href="#examples">Examples</a>
+    <a href="index.html" style="background: rgba(123,47,247,0.2);">Overview</a>
+    <a href="syntax.html">Syntax</a>
+    <a href="structs.html">Structs</a>
+    <a href="lists.html">Lists</a>
+    <a href="llvm.html">LLVM Backend</a>
+    <a href="runtime.html">Runtime C</a>
+    <a href="examples.html">Examples</a>
   </div>
 
   <div id="content">
@@ -27,30 +27,81 @@
       </div>
     </div>
 
-    <section id="intro">
-      <h1>Welcome to Zard Language</h1>
-      <p>The Zard Language is a statically typed, LLVM-backed programming language designed for clarity, performance, and elegance.</p>
-    </section>
+    <section id="overview">
+      <h1>Welcome to the Zard Language</h1>
+      <p>
+        The <strong>Zard Language</strong> is a modern, statically-typed programming language built from scratch with a strong integration to the LLVM toolchain.  
+        Its goal is to combine clarity, performance, and deep control — while maintaining elegant syntax and a flexible runtime.
+      </p>
 
-    <section id="syntax">
-      <h1>Basic Syntax</h1>
-      <pre><code class="language-zard">
-main {
-  int x = 10;
-  double y = 3.14;
-  print(x + y);
-}
-      </code></pre>
-    </section>
+      <h2>Philosophy</h2>
+      <p>
+        Zard was designed with a dual focus: <em>readability</em> and <em>power</em>.  
+        Every construct — from structs and lists to functions and control flow — is designed to feel expressive, predictable, and close to native LLVM semantics.
+      </p>
+      <p>
+        The language is inspired by the efficiency of C, the structure of Rust, and the expressiveness of higher-level languages, but it keeps a unique identity grounded in its own philosophy and runtime.
+      </p>
 
-    <section id="llvm">
-      <h1>LLVM Backend</h1>
-      <p>Zard compiles down to optimized LLVM IR, ensuring native performance and cross-platform portability.</p>
-    </section>
+      <h2> Key Principles</h2>
+      <ul>
+        <li><strong>Statically Typed:</strong> Every variable and function has a clear type known at compile time.</li>
+        <li><strong>LLVM Native:</strong> The compiler generates raw LLVM IR, ensuring portable and optimized native binaries.</li>
+        <li><strong>Runtime in C:</strong> A minimal, safe runtime written in C powers core data structures such as <code>List</code> and <code>Map</code>.</li>
+        <li><strong>Human-Friendly Syntax:</strong> Minimal punctuation, mixed readability between Java and C.</li>
+        <li><strong>Full Struct Support:</strong> Nested structs, lists of structs are integrate seamlessly.</li>
+      </ul>
 
-    <section id="runtime">
-      <h1>Runtime C Layer</h1>
-      <p>The runtime provides memory-safe structures and utilities implemented in C, used by the generated LLVM IR.</p>
+      <h2> What Makes Zard Unique</h2>
+      <p>
+        Unlike most hobby languages, Zard doesn’t rely on a virtual machine.  
+        Instead, it compiles directly to <strong>LLVM IR</strong>, optimizing memory operations and allowing integration with C, Rust, and other native codebases.  
+      </p>
+      <p>
+        The language was crafted to serve as a foundation for building real-world software — from CLI tools to low-level systems — all while being expressive and approachable.
+      </p>
+
+      <h2> Example Features (Covered in the Docs)</h2>
+      <ul>
+        <li> <strong>Syntax:</strong> Variable declarations, expressions, and control flow.</li>
+        <li> <strong>Structs:</strong> Custom types with nested fields.</li>
+        <li> <strong>Lists:</strong> Dynamic, typed collections with methods like <code>add</code>, <code>remove</code>, and <code>clear</code>.</li>
+        <li> <strong>LLVM Backend:</strong> Direct IR generation for native performance.</li>
+        <li> <strong>Runtime C Layer:</strong> Core memory-safe utilities and structures.</li>
+      </ul>
+
+      <h2>Vision</h2>
+      <p>
+        Zard is not just a language – it is a platform for experimentation and learning.  
+        Its ultimate goal is to allow developers to write expressive programs with readability and control for multiple platforms.  
+        Whether for language design exploration or serious development, Zard aims to be the perfect vehicle for creativity.
+      </p>
+
+            <h2>Future and Roadmap</h2>
+      <p>
+        Although Zard currently focuses on desktop and native compilation via LLVM, its long-term goal extends far beyond.  
+        Several experimental subsets of the language have already been tested successfully on <strong>microcontrollers</strong> and embedded devices,  
+        proving that Zard’s design can adapt to low-level environments with minimal overhead.
+      </p>
+
+      <p>
+        In the future, the project aims to introduce a dedicated <strong>Zard Embedded Profile</strong> —  
+        a lightweight runtime and compiler mode tailored for constrained systems such as ARM-based boards, IoT devices, and microcontrollers.  
+        This profile will preserve the clarity of Zard’s syntax while offering deterministic memory control and hardware-level access.
+      </p>
+
+      <p>
+        The vision is to make Zard a unified language capable of scaling from high-level application logic down to bare-metal environments —  
+        bringing the same expressive syntax to every layer of development.
+      </p>
+
+      <ul>
+        <li> Planned: Low-level runtime profile for embedded systems</li>
+        <li> Experimental: LLVM-based subset for microcontrollers</li>
+        <li> Future Goal: Cross-compilation pipeline for RISC-V and other targets</li>
+      </ul>
+      <p><em>“From high-level clarity to low-level precision — Zard is built to evolve.”</em></p>
+
     </section>
   </div>
 
