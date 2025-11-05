@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language Documentation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="#intro">Introduction</a>
+    <a href="#syntax">Syntax</a>
+    <a href="#structs">Structs</a>
+    <a href="#lists">Lists</a>
+    <a href="#llvm">LLVM Backend</a>
+    <a href="#runtime">Runtime C</a>
+    <a href="#examples">Examples</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="intro">
+      <h1>Welcome to Zard Language</h1>
+      <p>The Zard Language is a statically typed, LLVM-backed programming language designed for clarity, performance, and elegance.</p>
+    </section>
+
+    <section id="syntax">
+      <h1>Basic Syntax</h1>
+      <pre><code class="language-zard">
+main {
+  int x = 10;
+  double y = 3.14;
+  print(x + y);
+}
+      </code></pre>
+    </section>
+
+    <section id="llvm">
+      <h1>LLVM Backend</h1>
+      <p>Zard compiles down to optimized LLVM IR, ensuring native performance and cross-platform portability.</p>
+    </section>
+
+    <section id="runtime">
+      <h1>Runtime C Layer</h1>
+      <p>The runtime provides memory-safe structures and utilities implemented in C, used by the generated LLVM IR.</p>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
