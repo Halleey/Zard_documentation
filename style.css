@@ -56,7 +56,6 @@ body {
   background: rgba(123, 47, 247, 0.15);
 }
 
-/* CONTENT */
 #content {
   flex: 1;
   overflow-y: auto;
@@ -83,7 +82,6 @@ pre {
   transition: background var(--transition), color var(--transition), border var(--transition);
 }
 
-/* TOPBAR */
 #topbar {
   position: fixed;
   left: var(--sidebar-width);
@@ -93,10 +91,11 @@ pre {
   background: rgba(20, 16, 27, 0.95);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
+  justify-content: space-between; 
+  padding: 0 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: left var(--transition), background var(--transition);
+  z-index: 10;
 }
 
 #topbar.hidden {
@@ -109,20 +108,31 @@ pre {
   background: var(--accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  user-select: none;
+}
+
+.top-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .top-buttons button {
   background: none;
   border: none;
   color: var(--text-dark);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
-  margin-left: 10px;
-  transition: color var(--transition);
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: color var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
 .top-buttons button:hover {
   color: var(--purple-neon);
+  background: rgba(123,47,247,0.1);
+  box-shadow: 0 0 6px rgba(159,68,211,0.4);
 }
 
 body.light {
@@ -160,6 +170,17 @@ body.light #topbar {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
+body.light .top-buttons button {
+  color: #4a1472;
+  text-shadow: 0 0 6px rgba(159,68,211,0.7);
+}
+
+body.light .top-buttons button:hover {
+  color: #9f44d3;
+  background: rgba(159,68,211,0.1);
+  box-shadow: 0 0 8px rgba(159,68,211,0.6);
+}
+
 strong {
   color: var(--purple-neon);
 }
@@ -193,12 +214,19 @@ h1, h2, h3 {
   }
 
   #topbar {
-    position: fixed;
-    top: 0;
     left: 0;
     width: 100%;
     z-index: 25;
-    padding: 0 12px;
+    padding: 0 16px;
+    justify-content: space-between;
+  }
+
+  #logo {
+    font-size: 1.1rem;
+  }
+
+  .top-buttons button {
+    font-size: 1.3rem;
   }
 
   #content {
@@ -214,6 +242,7 @@ h1, h2, h3 {
   #content {
     padding: 70px 14px 40px 14px;
   }
+
   pre {
     font-size: 0.85rem;
   }
