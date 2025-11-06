@@ -173,7 +173,6 @@ body.light pre {
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
-
 @media (max-width: 900px) {
   body {
     flex-direction: column;
@@ -204,14 +203,31 @@ body.light pre {
     width: 100%;
     background: rgba(20, 16, 27, 0.95);
     z-index: 25;
+    padding: 0 12px; 
   }
 
   #logo {
     font-size: 1.1rem;
   }
 
+  .top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+  }
+
+  .top-buttons button {
+    font-size: 1.3rem;
+    padding: 8px; 
+    border-radius: 6px;
+  }
+
+  .top-buttons button:hover {
+    background: rgba(123, 47, 247, 0.1);
+  }
+
   #content {
-    padding: 80px 20px 40px 20px;
+    padding: 80px 18px 40px 18px;
   }
 
   h1 {
@@ -235,7 +251,7 @@ body.light pre {
 
 @media (max-width: 500px) {
   #topbar {
-    padding: 0 10px;
+    padding: 0 8px; 
   }
 
   #logo {
@@ -243,7 +259,8 @@ body.light pre {
   }
 
   .top-buttons button {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    padding: 8px;
   }
 
   pre {
@@ -251,6 +268,6 @@ body.light pre {
   }
 
   #content {
-    padding: 70px 16px 40px 16px;
+    padding: 70px 14px 40px 14px;
   }
 }
