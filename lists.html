@@ -9,9 +9,9 @@
 <body>
   <div id="sidebar">
     <h2>Zard Docs</h2>
-    <a href="index.html">Introduction</a>
-    <a href="syntax.html">Syntax</a>
-    <a href="structs.html">Structs</a>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
     <a href="lists.html" style="background: rgba(123,47,247,0.2);">Lists</a>
     <a href="llvm.html">LLVM Backend</a>
     <a href="runtime.html">Runtime C</a>
@@ -43,7 +43,7 @@ List&lt;int&gt; numbers;
       </code></pre>
 
       <p>
-        If initialized with values, the compiler infers the type automatically from the first element:
+        If initialized with values, the compiler infers the type automatically from the first element, eliminating the need to informe &lt;type&gt;:
       </p>
       <pre><code class="language-zard">
 List nomes = ("zard", "angel");

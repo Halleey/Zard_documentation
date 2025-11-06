@@ -1,7 +1,14 @@
-const sidebar = document.getElementById('sidebar');
 const toggleSidebar = document.getElementById('toggleSidebar');
 const toggleTheme = document.getElementById('toggleTheme');
 const body = document.body;
+
+const toggleSidebarBtn = document.getElementById('toggleSidebar');
+const sidebar = document.getElementById('sidebar');
+
+toggleSidebarBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('show');
+});
+
 
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'light') {
@@ -18,3 +25,6 @@ toggleTheme.onclick = () => {
   const newTheme = body.classList.contains('light') ? 'light' : 'dark';
   localStorage.setItem('theme', newTheme);
 };
+
+
+
