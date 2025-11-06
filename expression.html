@@ -1,11 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expressions</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — Expressions</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">variables</a>
+    <a href="expression.html" style="background: rgba(123,47,247,0.2);">Expressions</a>
+    <a href="lists.html">Lists</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="expressions">
+      <h1>Expressions</h1>
+      <p>
+        Expressions in <strong>Zard</strong> represent computations that produce a value.  
+        They can combine literals, variables, and operators such as <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>.  
+        Expressions are evaluated from left to right, respecting operator precedence.
+      </p>
+
+      <h2>Basic Arithmetic</h2>
+      <p>
+        Zard supports all standard arithmetic operations between numeric types:
+      </p>
+      <ul>
+        <li><code>+</code> — Addition</li>
+        <li><code>-</code> — Subtraction</li>
+        <li><code>*</code> — Multiplication</li>
+        <li><code>/</code> — Division</li>
+      </ul>
+
+      <pre><code class="language-zard">
+main {
+  int a = 10;
+  int b = 5;
+
+  int sum = a + b;       # 15
+  int diff = a - b;      # 5
+  int product = a * b;   # 50
+  double div = a / b;    # 2.0
+
+  print(sum);
+  print(diff);
+  print(product);
+  print(div);
+}
+      </code></pre>
+
+      <h2>Operator Precedence</h2>
+      <p>
+        Multiplication and division have higher precedence than addition and subtraction.  
+        You can use parentheses <code>( )</code> to explicitly define evaluation order.
+      </p>
+      <pre><code class="language-zard">
+main {
+  int x = 10;
+  int y = 5;
+  int z = 2;
+
+  int result1 = x + y * z;      # 10 + (5 * 2) = 20
+  int result2 = (x + y) * z;    # (10 + 5) * 2 = 30
+
+  print(result1);
+  print(result2);
+}
+      </code></pre>
+
+      <h2>Using Parentheses</h2>
+      <p>
+        Parentheses can be nested to create complex expressions.  
+        Zard evaluates expressions inside parentheses first.
+      </p>
+      <pre><code class="language-zard">
+main {
+  double result = (5 + 3) * (2 + (4 / 2));
+  print(result); # (8) * (2 + 2) = 8 * 4 = 32
+}
+      </code></pre>
+
+      <h2>Mixed Types</h2>
+      <p>
+        When mixing numeric types, Zard automatically promotes values to the most precise type involved in the expression.  
+        For example, using an <code>int</code> and a <code>double</code> will produce a <code>double</code> result.
+      </p>
+      <pre><code class="language-zard">
+main {
+  int a = 3;
+  double b = 2.5;
+
+  double result = a + b; # promoted to double
+  print(result);         # 5.5
+}
+      </code></pre>
+
+      <h2>Invalid Operations</h2>
+      <p>
+        Zard enforces strict type checking.  
+        Attempting to apply arithmetic operators to incompatible types (e.g., strings or structs) results in a compile-time error.
+      </p>
+      <pre><code class="language-zard">
+main {
+  string name = "Zard";
+  int age = 5;
+
+  # name + age; ❌ Invalid — cannot add string and int
+}
+      </code></pre>
+
+      <h2>Expressions with Print and Assignments</h2>
+      <p>
+        Expressions can appear inside <code>print()</code>, <code>if()</code> conditions, and assignments.
+      </p>
+      <pre><code class="language-zard">
+main {
+  int x = 4;
+  int y = 6;
+
+  print(x + y * 2);  # 16
+  int total = (x + y) * 2;
+  print(total);      # 20
+}
+      </code></pre>
+
+      <h2>Full Example</h2>
+      <pre><code class="language-zard">
+main {
+  int a = 10;
+  int b = 3;
+  double c = 2.5;
+
+  double result = (a + b) * c - (b / 2.0);
+  print(result); # (13 * 2.5) - 1.5 = 32.5 - 1.5 = 31.0
+}
+      </code></pre>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
