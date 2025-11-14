@@ -32,9 +32,8 @@
       </p>
 
       <h2>Declaration</h2>
-      <p>
-        The general form for declaring a variable is:
-      </p>
+      <p>The general form for declaring a variable is:</p>
+
       <pre><code class="language-zard">
 &lt;type&gt; &lt;name&gt; = &lt;value&gt;;
       </code></pre>
@@ -60,9 +59,8 @@ char letter = 'Z';
       </ul>
 
       <h2>Uninitialized Variables</h2>
-      <p>
-        You can declare a variable without an initial value, but it must be initialized before use:
-      </p>
+      <p>You can declare a variable without an initial value, but it must be initialized before use:</p>
+
       <pre><code class="language-zard">
 int count;
 count = 10;
@@ -70,41 +68,80 @@ print(count);
       </code></pre>
 
       <h2>Reassignment</h2>
-      <p>
-        Variables in Zard are <strong>mutable</strong> — you can freely reassign new values after declaration.
-      </p>
+      <p>Variables in Zard are <strong>mutable</strong> — you can freely reassign new values after declaration.</p>
+
       <pre><code class="language-zard">
 string word = "hello";
 word = "world";
 print(word);
       </code></pre>
 
-      <h2>Example</h2>
+      <!-- ============================ -->
+      <!--        NEW INPUT SECTION     -->
+      <!-- ============================ -->
+
+      <h2>Input</h2>
       <p>
-        The example below declares variables of each primitive type and prints their values:
+        Zard provides the built-in function <code>input()</code> to read values from the user at runtime.
+        The input text is automatically converted to the type of the variable receiving it.
       </p>
+
+      <h3>Basic Usage</h3>
+
+      <pre><code class="language-zard">
+int a = input();
+double b = input();
+string name = input();
+      </code></pre>
+
+      <h3>Type Conversion Rules</h3>
+      <ul>
+        <li><strong>int</strong> — expects an integer (e.g., <code>10</code>)</li>
+        <li><strong>double</strong> — accepts decimals with <code>.</code></li>
+        <li><strong>float</strong> — like double, converted to float</li>
+        <li><strong>boolean</strong> — expects <code>true</code> or <code>false</code></li>
+        <li><strong>char</strong> — takes only the first character</li>
+        <li><strong>string</strong> — returns the text exactly</li>
+      </ul>
+
+      <h3>Error Handling</h3>
+      <p>
+        If the user enters a value incompatible with the variable’s type,
+        the runtime will throw a conversion error:
+      </p>
+
+      <pre><code class="language-zard">
+int x = input();   // user types: "abc"
+
+# Error:
+cannot convert "abc" to int
+      </code></pre>
+
+      <h3>Example</h3>
+
       <pre><code class="language-zard">
 main {
-  int age = 25;
-  double height = 1.82;
-  float ratio = 0.75;
-  string name = "Zard";
-  boolean active = true;
-  char initial = 'Z';
+  print("Enter your age: ");
+  int age = input();
 
+  print("Enter your height: ");
+  double height = input();
+
+  print("Enter your name: ");
+  string name = input();
+
+  print("=== User Data ===");
   print(age);
   print(height);
-  print(ratio);
   print(name);
-  print(active);
-  print(initial);
 }
       </code></pre>
 
       <p>
-        ➜ To learn how to perform operations and computations with these variables, continue to the next topic:  
+        ➜ To continue learning how to use variables in computations, proceed to  
         <a href="expression.html"><strong>Expressions</strong></a>.
       </p>
+
     </section>
   </div>
 
