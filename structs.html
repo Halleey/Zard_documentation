@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — Structs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
+    <a href="lists.html">Lists</a>
+    <a href="structs.html" style="background: rgba(123,47,247,0.2);">Struct</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="structs">
+      <h1>Structs</h1>
+
+      <p>
+        <strong>Structs</strong> in Zard are custom data types that group related values together.
+        They work like lightweight objects, containing fields of any type — including other structs.
+      </p>
+
+      <h2>Declaring a Struct</h2>
+      <pre><code class="language-zard">
+Struct Pessoa {
+    string nome;
+    int idade;
+}
+      </code></pre>
+
+      <h2>Nested Structs</h2>
+      <p>Structs can contain other structs inside:</p>
+      <pre><code class="language-zard">
+Struct Endereco {
+    string rua;
+    string cidade;
+    Struct Pais pais;
+}
+      </code></pre>
+
+      <h2>Creating and Assigning Values</h2>
+      <pre><code class="language-zard">
+Pessoa p;
+p.nome = "Alice";
+p.idade = 22;
+      </code></pre>
+
+      <h2>Struct inside Struct</h2>
+      <pre><code class="language-zard">
+Endereco e;
+e.rua = "Rua Central";
+e.cidade = "São Paulo";
+
+Pais brasil;
+brasil.nome = "Brasil";
+
+e.pais = brasil;
+      </code></pre>
+
+      <h2>List of Structs</h2>
+      <pre><code class="language-zard">
+List&lt;Pessoa&gt; pessoas;
+
+pessoas.add(p);
+      </code></pre>
+
+      <hr>
+
+      <h2>Full Example</h2>
+      <p>This complete example shows nested structs, lists of structs, filtering and field access.</p>
+
+      <pre><code class="language-zard">
+main {
+
+    Struct Pais {
+        string nome;
+    }
+
+    Struct Endereco {
+        string rua;
+        string cidade;
+        Struct Pais pais;
+    }
+
+    Struct Pessoa {
+        string nome;
+        int idade;
+        Struct Endereco endereco;
+    }
+
+    List<Pessoa> pessoas;
+
+    # ---- Criação dos países ----
+    Pais brasil;
+    brasil.nome = "Brasil";
+
+    Pais argentina;
+    argentina.nome = "Argentina";
+
+    # ---- Pessoa 1 ----
+    Pessoa p1;
+    p1.nome = "Alice";
+    p1.idade = 25;
+    Endereco e1;
+    e1.rua = "Rua A";
+    e1.cidade = "São Paulo";
+    e1.pais = brasil;
+    p1.endereco = e1;
+
+    # ---- Pessoa 2 ----
+    Pessoa p2;
+    p2.nome = "Bob";
+    p2.idade = 17;
+    Endereco e2;
+    e2.rua = "Av. Central";
+    e2.cidade = "Rio de Janeiro";
+    e2.pais = brasil;
+    p2.endereco = e2;
+
+    # ---- Pessoa 3 ----
+    Pessoa p3;
+    p3.nome = "Carlos";
+    p3.idade = 32;
+    Endereco e3;
+    e3.rua = "Calle 9";
+    e3.cidade = "Buenos Aires";
+    e3.pais = argentina;
+    p3.endereco = e3;
+
+    pessoas.add(p1);
+    pessoas.add(p2);
+    pessoas.add(p3);
+
+    # ---- Busca por todos que moram no Brasil ----
+    print("=== Pessoas que moram no Brasil ===");
+    int i = 0;
+    while (i < pessoas.size()) {
+        if (pessoas.get(i).endereco.pais.nome == "Brasil") {
+            print(pessoas.get(i).nome);
+            print(pessoas.get(i).endereco.cidade);
+        }
+        i = i + 1;
+    }
+
+    # ---- Calcular idade média ----
+    int soma = 0;
+    i = 0;
+    while (i < pessoas.size()) {
+        soma = soma + pessoas.get(i).idade;
+        i = i + 1;
+    }
+    int media = soma / pessoas.size();
+    print("Idade média:");
+    print(media);
+
+    # ---- Verificação complexa ----
+    if (pessoas.get(2).endereco.pais.nome == "Argentina" && pessoas.get(2).idade > 30) {
+        print(pessoas.get(2).nome);
+        print(" é argentino e tem mais de 30 anos");
+    }
+}
+      </code></pre>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
