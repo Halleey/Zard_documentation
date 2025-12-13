@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — Input()</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
+    <a href="lists.html">Lists</a>
+     <a href="structs.html">Struct & Impl</a>
+    <a href="input.html" style="background: rgba(123,47,247,0.2);">Input</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="input">
+      <h1><code>input()</code></h1>
+
+      <p>
+        The <code>input()</code> function in Zard reads a value from standard input
+        (<strong>stdin</strong>) and adapts its type based on the context where it is used.
+        You do <strong>not</strong> specify the type of <code>input()</code> directly:
+        instead, the compiler specializes it according to the expected type at that location.
+      </p>
+
+      <p>
+        In other words:
+        <strong><code>input()</code> is polymorphic and type-directed</strong>.  
+        For each concrete use (e.g. assigning to <code>int</code>, <code>double</code>, <code>string</code>),
+        the compiler generates a dedicated model/handler for that type.
+      </p>
+
+      <hr>
+
+      <h2>Type-directed behavior</h2>
+
+      <p>
+        When the compiler sees <code>input()</code>, it looks at the
+        <strong>expected type</strong> in that position and specializes the call:
+      </p>
+
+      <ul>
+        <li>Assigning to <code>int</code> → generates an integer input reader.</li>
+        <li>Assigning to <code>double</code> → generates a floating-point input reader.</li>
+        <li>Assigning to <code>string</code> → generates a string input reader.</li>
+        <li>Assigning to <code>char</code> → generates a char input reader.</li>
+        <li>Assigning to <code>float</code> → generates a float input reader.</li>
+      </ul>
+
+      <p>
+        This behavior is resolved at compile time. No explicit cast is required, and
+        <code>input()</code> itself remains syntactically the same in all cases.
+      </p>
+
+      <pre><code class="language-zard">
+main {
+
+    int a = input();      # input specialized as int reader
+    double c = input();   # input specialized as double reader
+
+    print(c);
+    print(a);
+}
+      </code></pre>
+
+      <p>
+        In the example above, the same <code>input()</code> syntax results in two different
+        internal models: one for <code>int</code>, one for <code>double</code>.
+      </p>
+      <h2>Behavior and runtime notes</h2>
+
+      <ul>
+        <li><code>input()</code> is <strong>blocking</strong>: the program waits until the user provides a value.</li>
+        <li>The concrete parsing (for <code>int</code>, <code>double</code>, <code>string</code>, etc.) is performed by the generated runtime helpers.</li>
+        <li>
+          If the user types something incompatible with the expected type
+          (e.g. letters when an <code>int</code> is expected),
+          the current behavior depends on the implementation/runtime and may result in an error.
+        </li>
+      </ul>
+
+      <p>
+        Internally, the compiler may generate different low-level functions or LLVM helpers
+        for each observed usage of <code>input()</code>, effectively creating a
+        <strong>dedicated model per case of use</strong>.
+      </p>
+
+      <hr>
+
+      <h2>Summary</h2>
+
+      <ul>
+        <li><code>input()</code> has no explicit type annotation in the code.</li>
+        <li>The type is inferred from the variable or expression that receives the value.</li>
+        <li>The compiler specializes and generates a dedicated reader for each type context.</li>
+      </ul>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
