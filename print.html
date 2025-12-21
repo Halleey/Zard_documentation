@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — Print & Println</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
+    <a href="lists.html">Lists</a>
+    <a href="structs.html">Struct & Impl</a>
+    <a href="input.html">Input</a>
+    <a href="print.html" style="background: rgba(123,47,247,0.2);">Print</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="print">
+      <h1><code>print()</code> vs <code>println()</code></h1>
+
+      <p>
+        Zard provides two basic functions to display output: <code>print()</code> and <code>println()</code>.
+      </p>
+
+      <ul>
+        <li><strong><code>print(value)</code></strong>: prints the given value <em>without adding a newline</em> at the end.</li>
+        <li><strong><code>println(value)</code></strong>: prints the given value <em>and adds a newline</em> after it.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Examples</h2>
+
+      <pre><code class="language-zard">
+main {
+    print(1);
+    print(2);
+    print(3);
+    println("Hello");
+    println("World");
+}
+      </code></pre>
+
+      <p>Output:</p>
+      <pre>
+123Hello
+World
+      </pre>
+
+      <h2>Notes</h2>
+      <ul>
+        <li>Each call to <code>print()</code> continues on the same line.</li>
+        <li><code>println()</code> automatically moves to the next line after printing.</li>
+        <li>Currently, <code>print()</code> only accepts <strong>one argument at a time</strong>.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Summary</h2>
+      <ul>
+        <li><code>print()</code> – print a value inline, no newline.</li>
+        <li><code>println()</code> – print a value and move to a new line.</li>
+      </ul>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

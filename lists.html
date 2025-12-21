@@ -15,7 +15,7 @@
     <a href="lists.html" style="background: rgba(123,47,247,0.2);">Lists</a>
     <a href="structs.html">Struct & Impl</a>
     <a href="input.html">Input</a>
-
+    <a href="print.html">Print</a>
   </div>
 
   <div id="content">
@@ -43,7 +43,7 @@ List&lt;int&gt; numbers;
       </code></pre>
 
       <p>
-        If initialized with values, the compiler infers the type automatically from the first element, eliminating the need to informe &lt;type&gt;:
+        If initialized with values, the compiler infers the type automatically from the first element, eliminating the need to inform &lt;type&gt;:
       </p>
       <pre><code class="language-zard">
 List nomes = ("zard", "angel");
@@ -100,6 +100,26 @@ print(numbers.get(1));
       </p>
       <pre><code class="language-zard">
 numbers.clear();
+      </code></pre>
+
+      <h2>Restrictions: No Lists of Lists</h2>
+      <p>
+        In Zard, it is <strong>not allowed</strong> to have a list that holds other lists or use <code>List&lt;List&lt;T&gt;&gt;</code>.
+        This design decision ensures clarity and avoids potential performance issues in the ARC memory system..
+      </p>
+      <pre><code class="language-zard">
+# ❌ Invalid example — Lists cannot contain other lists.
+List&lt;List&lt;int&gt;&gt; matrix;
+      </code></pre>
+      <p>
+        To model more complex structures like matrices or tables, use structs instead:
+      </p>
+      <pre><code class="language-zard">
+struct Matrix {
+  List&lt;int&gt; row;
+}
+
+List&lt;Matrix&gt; matrix;
       </code></pre>
 
       <h2>Full Example</h2>
