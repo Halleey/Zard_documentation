@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zard Language — While</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
+    <a href="if.html">If</a>
+    <a href="while.html" style="background: rgba(123,47,247,0.2);">While</a>
+    <a href="lists.html">Lists</a>
+    <a href="structs.html">Struct & Impl</a>
+    <a href="input.html">Input</a>
+    <a href="print.html">Print</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="while">
+
+      <h1>While Loop</h1>
+
+      <p>
+        The <strong><code>while</code></strong> loop in Zard repeatedly executes a block of code
+        as long as a condition evaluates to <code>true</code>.
+      </p>
+
+      <hr>
+
+      <h2>Basic Syntax</h2>
+
+      <pre><code class="language-zard">
+while (condition) {
+    // executed repeatedly while condition is true
+}
+      </code></pre>
+
+      <p>
+        The condition is evaluated before each iteration.
+        If the condition is false, the loop stops.
+      </p>
+
+      <hr>
+
+      <h2>While with Simple Variables</h2>
+
+      <p>
+        The most common use of <code>while</code> is counting or iterating using a variable.
+      </p>
+
+      <pre><code class="language-zard">
+int i = 0;
+
+while (i < 5) {
+    println(i);
+    i = i + 1;
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>While with a Decreasing Counter</h2>
+
+      <pre><code class="language-zard">
+int i = 10;
+
+while (i > 0) {
+    println(i);
+    i--;
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>While with Lists</h2>
+
+      <p>
+        Lists are commonly iterated using an index variable.
+      </p>
+
+      <pre><code class="language-zard">
+int i = 0;
+
+while (i < pessoas.size()) {
+    println(pessoas.get(i).nome);
+    i++;
+}
+      </code></pre>
+
+      <p>
+        The loop runs until all elements in the list are processed.
+      </p>
+
+      <hr>
+
+      <h2>While with Structs</h2>
+
+      <p>
+        Inside a loop, struct fields can be accessed normally.
+      </p>
+
+      <pre><code class="language-zard">
+int i = 0;
+
+while (i < pessoas.size()) {
+    Pessoa p = pessoas.get(i);
+    println(p.nome);
+    println(p.idade);
+    i = i + 1;
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>While with Nested Structs</h2>
+
+      <pre><code class="language-zard">
+int i = 0;
+
+while (i < pessoas.size()) {
+    println(pessoas.get(i).endereco.rua);
+    println(pessoas.get(i).endereco.cidade);
+    i++;
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>Common Pitfalls</h2>
+
+      <ul>
+        <li>Forgetting to update the loop variable causes infinite loops</li>
+        <li>The condition must eventually become false</li>
+        <li>The condition is checked before each iteration</li>
+      </ul>
+
+      <hr>
+
+      <h2>Key Rules</h2>
+
+      <ul>
+        <li>The loop runs while the condition is true</li>
+        <li>The condition must evaluate to a boolean</li>
+        <li>Variables declared outside the loop remain accessible</li>
+        <li><code>while</code> works with primitives, lists, and structs</li>
+      </ul>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
