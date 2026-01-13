@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta viewport="width=device-width, initial-scale=1.0">
+  <title>Zard Language — If</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Zard Docs</h2>
+    <a href="index.html">Overview</a>
+    <a href="variables.html">Variables</a>
+    <a href="expression.html">Expressions</a>
+    <a href="if.html" style="background: rgba(123,47,247,0.2);">If</a>
+    <a href="lists.html">Lists</a>
+    <a href="structs.html">Struct & Impl</a>
+    <a href="while.html">While</a>
+    <a href="input.html">Input</a>
+    <a href="print.html">Print</a>
+  </div>
+
+  <div id="content">
+    <div id="topbar">
+      <div id="logo">Zard Language</div>
+      <div class="top-buttons">
+        <button id="toggleSidebar">☰</button>
+        <button id="toggleTheme">🌓</button>
+      </div>
+    </div>
+
+    <section id="if">
+      <h1>If Statement</h1>
+
+      <p>
+        The <strong><code>if</code></strong> statement in Zard controls the execution of code
+        based on a boolean condition.
+        It is used to express decisions and branching logic.
+      </p>
+
+      <hr>
+
+      <h2>Basic Syntax</h2>
+
+      <pre><code class="language-zard">
+if (condition) {
+    // executed only if condition is true
+}
+      </code></pre>
+
+      <p>
+        The condition must evaluate to a boolean value.
+        Zard allows conditions based on primitive values, struct fields, list elements,
+        and nested data access.
+      </p>
+
+        <hr>
+
+        <h2>If with Simple Variables</h2>
+
+        <p>
+        The most basic usage of <code>if</code> involves simple variables and numeric comparisons.
+        </p>
+
+        <pre><code class="language-zard">
+        int x = 10;
+
+        if (x > 5) {
+            println("x is greater than 5");
+        }
+        </code></pre>
+
+
+        <hr>
+
+        <h2>If and Else</h2>
+
+        <p>
+        The <code>else</code> block runs when the condition is false.
+        </p>
+
+        <pre><code class="language-zard">
+        int x = 3;
+
+        if (x >= 10) {
+            println("x is greater or equal to 10");
+        } else {
+            println("x is less than 10");
+        }
+        </code></pre>
+
+
+        <hr>
+
+        <h2>If, Else If and Else</h2>
+
+        <p>
+        Use <code>else if</code> to check multiple conditions in sequence.
+        Only the first true condition is executed.
+        </p>
+
+        <pre><code class="language-zard">
+        int x = 7;
+
+        if (x > 10) {
+            println("x is greater than 10");
+        } else if (x > 5) {
+            println("x is greater than 5");
+        } else {
+            println("x is 5 or less");
+        }
+        </code></pre>
+
+        <hr>
+
+        <h2>If with String Variables</h2>
+
+        <pre><code class="language-zard">
+        string name = "Alice";
+
+        if (name == "Bob") {
+            println("Hello Bob");
+        } else if (name == "Alice") {
+            println("Hello Alice");
+        } else {
+            println("Unknown user");
+        }
+        </code></pre>
+
+
+      <hr>
+
+      <h2>Condition Using Struct Fields</h2>
+
+      <p>
+        Conditions may access fields inside structs, including nested structs.
+      </p>
+
+      <pre><code class="language-zard">
+if (pessoa.idade >= 18) {
+    println("Maior de idade");
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>Condition with Nested Structs</h2>
+
+      <p>
+        Zard supports deep field access inside conditions without intermediate variables.
+      </p>
+
+      <pre><code class="language-zard">
+if (pessoa.endereco.cidade == "São Paulo") {
+    println("Mora em São Paulo");
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>Condition Using Lists</h2>
+
+      <p>
+        List elements can be accessed directly inside an <code>if</code> condition.
+      </p>
+
+      <pre><code class="language-zard">
+if (pessoas.get(1).idade < 18) {
+    println(pessoas.get(1).nome);
+    println(" é menor de idade");
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>Complete Example</h2>
+
+      <p>
+        This example demonstrates conditional logic using structs, lists,
+        and nested field access.
+      </p>
+
+      <pre><code class="language-zard">
+main {
+
+    Shd Struct Endereco {
+        string rua;
+        string cidade;
+    }
+
+    Struct Pessoa {
+        string nome;
+        int idade;
+        Struct Endereco endereco;
+    }
+
+
+
+    Pessoa p1;
+    p1.nome = "Alice";
+    p1.idade = 25;
+    Endereco e1;
+    e1.rua = "Rua A";
+    e1.cidade = "São Paulo";
+    p1.endereco = e1;
+    if(p1.nome == "Alice")
+    {
+    println("sim o nome era alice");
+    }
+     if (p1.endereco.cidade == "São Paulo") {
+           println("A primeira pessoa mora em São Paulo");
+       }
+       
+    List pessoas = (p1);
+
+    Pessoa p2;
+    p2.nome = "Bob";
+    p2.idade = 17;
+    Endereco e2;
+    e2.rua = "Av. Central";
+    e2.cidade = "Rio de Janeiro";
+    p2.endereco = e2;
+
+    pessoas.add(p2);
+
+    println(pessoas.get(0).nome);
+    println(pessoas.get(0).endereco.rua);
+    println(pessoas.get(0).endereco.cidade);
+
+    println(pessoas.get(1).nome);
+    println(pessoas.get(1).endereco.rua);
+    println(pessoas.get(1).endereco.cidade);
+
+    if (pessoas.get(0).endereco.cidade == "São Paulo") {
+        println("A primeira pessoa mora em São Paulo");
+    }
+
+    if (pessoas.get(1).idade < 18) {
+        println(pessoas.get(1).nome);
+        println(" é menor de idade");
+    }
+
+    int i = 0;
+    while (i < pessoas.size()) {
+        println("Pessoa:");
+        println(pessoas.get(i).nome);
+        println(pessoas.get(i).endereco.rua);
+        println(pessoas.get(i).endereco.cidade);
+        i = i + 1;
+    }
+
+}
+      </code></pre>
+
+      <hr>
+
+      <h2>Key Rules</h2>
+
+      <ul>
+        <li>The condition must evaluate to <code>true</code> or <code>false</code></li>
+        <li>Conditions support string and numeric comparisons</li>
+        <li>Struct and list access is allowed inside conditions</li>
+        <li>Blocks are executed only when the condition is true</li>
+      </ul>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

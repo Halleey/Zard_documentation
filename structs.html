@@ -13,6 +13,7 @@
     <a href="index.html">Overview</a>
     <a href="variables.html">Variables</a>
     <a href="expression.html">Expressions</a>
+    <a href="if.html">If</a>
     <a href="lists.html">Lists</a>
     <a href="structs.html" style="background: rgba(123,47,247,0.2);">Struct & Impl</a>
     <a href="input.html">Input</a>
@@ -159,36 +160,6 @@ p.setName("Ana");
       </code></pre>
 
       <h2>Impl with Parametrized Structs</h2>
-
-      <pre><code class="language-zard">
-Struct Set {
-    List<?> data;
-}
-
-impl Set {
-
-    function Struct<Set> add(? value) {
-        int i = 0;
-        while (i < s.data.size()) {
-            if (s.data.get(i) == value) {
-                return s;
-            }
-            i = i + 1;
-        }
-        s.data.add(value);
-        return s;
-    }
-
-    function Struct<Set> remove(int index) {
-        s.data.remove(index);
-        return s;
-    }
-}
-      </code></pre>
-
-      <hr>
-
-      <h2>Complete Example with Struct + Impl + Nested Logic</h2>
 
       <pre><code class="language-zard">
 main {
