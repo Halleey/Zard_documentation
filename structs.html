@@ -300,6 +300,58 @@ main {
 <li>Keeps updates localized in a single block</li>
 </ul>
 
+
+
+<hr>
+
+<h2>Structs With Only Methods</h2>
+
+<p>
+In Zard, a struct does not need to contain fields.  
+It may exist purely to group related functions.
+</p>
+
+<p>
+This allows structs to act as <strong>method containers</strong>, similar to
+utility classes or namespaces in other languages.
+</p>
+
+<pre><code class="language-zard">
+main {
+
+    Struct Math {}
+
+    impl Math {
+
+        function int sum(int x, int z){
+            return x + z;
+        }
+
+    }
+
+    Math m;
+
+    println(m.sum(2,3));
+
+}
+</code></pre>
+
+<p>
+In this example:
+</p>
+
+<ul>
+<li><code>Math</code> is declared without any attributes.</li>
+<li>The <code>impl</code> block defines the behavior of the struct.</li>
+<li>The struct instance <code>m</code> is created only to call the method.</li>
+<li>The method <code>sum</code> returns the result of the addition.</li>
+</ul>
+
+<p>
+This pattern is useful for organizing reusable functions
+that conceptually belong together.
+</p>
+
 </section>
 
 </div>
