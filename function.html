@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zard Language — Functions</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="sidebar">
+<h2>Zard Docs</h2>
+<a href="index.html">Overview</a>
+<a href="variables.html">Variables</a>
+<a href="expression.html">Expressions</a>
+<a href="if.html">If</a>
+<a href="while.html">While</a>
+
+<a href="lists.html">Lists</a>
+<a href="functions.html" style="background: rgba(123,47,247,0.2);">Functions</a>
+<a href="structs.html">Struct & Impl</a>
+
+<a href="input.html">Input</a>
+
+<a href="print.html">Print</a>
+</div>
+
+<div id="content">
+
+<div id="topbar">
+<div id="logo">Zard Language</div>
+
+<div class="top-buttons">
+<button id="toggleSidebar">☰</button>
+<button id="toggleTheme">🌓</button>
+</div>
+</div>
+
+<section>
+
+<h1>Functions</h1>
+
+<p>
+Functions in Zard define reusable blocks of code.  
+They can receive parameters and return values.
+</p>
+
+<p>
+Zard supports functions returning the following types:
+</p>
+
+<ul>
+<li><strong>int</strong></li>
+<li><strong>double</strong></li>
+<li><strong>string</strong></li>
+<li><strong>void</strong> (no return value)</li>
+</ul>
+
+<hr>
+
+<h2>Basic Function Syntax</h2>
+
+<pre><code class="language-zard">
+function returnType functionName(parameters) {
+    # code
+}
+</code></pre>
+
+Example:
+
+<pre><code class="language-zard">
+function int sum(int a, int b) {
+    return a + b;
+}
+</code></pre>
+
+<hr>
+
+<h2>Calling Functions</h2>
+
+Functions can be invoked using the <code>call</code> keyword.
+
+<pre><code class="language-zard">
+call sum(2, 3);
+</code></pre>
+
+Functions returning values can also be used in expressions.
+
+<pre><code class="language-zard">
+int result = sum(5, 4);
+print(result);
+</code></pre>
+
+<hr>
+
+<h2>Void Functions</h2>
+
+Functions that do not return values use the <strong>void</strong> type.
+
+<pre><code class="language-zard">
+function void hello() {
+    print("Hello Zard!");
+}
+
+call hello();
+</code></pre>
+
+<hr>
+
+<h2>Functions with Lists</h2>
+
+Functions can receive complex types like lists.
+
+Example: Bubble Sort implementation.
+
+<pre><code class="language-zard">
+function void bubbleSort(List<int> arr) {
+
+    int n = arr.size();
+
+    for (int i = 0; i < n - 1; i++) {
+
+        for (int j = 0; j < n - i - 1; j++) {
+
+            int a = arr.get(j);
+            int b = arr.get(j + 1);
+
+            if (a > b) {
+
+                arr.remove(j);
+                arr.remove(j);
+
+                List<int> temp;
+
+                for (int k = 0; k < j; k++) {
+                    temp.add(arr.get(k));
+                }
+
+                temp.add(b);
+                temp.add(a);
+
+                for (int k = j; k < arr.size(); k++) {
+                    temp.add(arr.get(k));
+                }
+
+                arr.clear();
+
+                for (int k = 0; k < temp.size(); k++) {
+                    arr.add(temp.get(k));
+                }
+
+            }
+
+        }
+
+    }
+
+}
+</code></pre>
+
+Usage:
+
+<pre><code class="language-zard">
+List numeros = (23,13,9,40,80);
+
+call bubbleSort(numeros);
+
+print(numeros);
+</code></pre>
+
+<hr>
+
+<h2>Mathematical Functions</h2>
+
+Zard functions can be used to implement mathematical utilities.
+
+<pre><code class="language-zard">
+function double sum(double a, double b) {
+    return a + b;
+}
+
+function double sub(double a, double b) {
+    return a - b;
+}
+
+function double mul(double a, double b) {
+    return a * b;
+}
+
+function double div(double a, double b) {
+
+    if (b == 0) {
+        print("Erro: divisao por zero!");
+        return 0.0;
+    }
+
+    return a / b;
+}
+</code></pre>
+
+Example:
+
+<pre><code class="language-zard">
+double r = sum(2.5, 4.2);
+
+print(r);
+</code></pre>
+
+<hr>
+
+<h2>Loops Inside Functions</h2>
+
+Functions can contain loops and complex logic.
+
+Example: Power function.
+
+<pre><code class="language-zard">
+function double pow(double base, int exp) {
+
+    double result = 1.0;
+    int i = 0;
+
+    while (i < exp) {
+        result = result * base;
+        i++;
+    }
+
+    return result;
+}
+</code></pre>
+
+<hr>
+
+<h2>Newton Method Example</h2>
+
+Square root approximation:
+
+<pre><code class="language-zard">
+function double sqrt(double x) {
+
+    double guess = x / 2.0;
+    int i = 0;
+
+    while (i < 20) {
+        guess = (guess + x / guess) / 2.0;
+        i++;
+    }
+
+    return guess;
+}
+</code></pre>
+
+<hr>
+
+<h2>Trigonometric Approximations</h2>
+
+Example implementations using Taylor series.
+
+<pre><code class="language-zard">
+function double sin(double x) {
+
+    double term = x;
+    double sum = term;
+
+    int n = 1;
+
+    while (n < 10) {
+
+        term = -term * x * x / ((2 * n) * (2 * n + 1));
+        sum = sum + term;
+        n++;
+
+    }
+
+    return sum;
+}
+</code></pre>
+
+<pre><code class="language-zard">
+function double cos(double x) {
+
+    double term = 1.0;
+    double sum = term;
+
+    int n = 1;
+
+    while (n < 10) {
+
+        term = -term * x * x / ((2 * n - 1) * (2 * n));
+        sum = sum + term;
+        n++;
+
+    }
+
+    return sum;
+}
+</code></pre>
+
+<hr>
+
+<h2>Recursion</h2>
+
+Functions can call themselves recursively.
+
+Example: Factorial.
+
+Iterative version:
+
+<pre><code class="language-zard">
+function int fact(int n) {
+
+    int result = 1;
+    int i = 1;
+
+    while (i <= n) {
+        result = result * i;
+        i++;
+    }
+
+    return result;
+
+}
+</code></pre>
+
+Recursive version:
+
+<pre><code class="language-zard">
+function int factorial(int n) {
+
+    if (n == 0) {
+        return 1;
+    }
+
+    return n * factorial(n - 1);
+
+}
+</code></pre>
+
+<hr>
+
+<h2>Summary</h2>
+
+Functions are one of the core building blocks of Zard.
+
+They allow:
+
+<ul>
+<li>Code reuse</li>
+<li>Logical organization</li>
+<li>Mathematical computations</li>
+<li>Algorithm implementation</li>
+<li>Recursion</li>
+<li>Manipulation of complex data structures</li>
+</ul>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
