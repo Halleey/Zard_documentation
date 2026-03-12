@@ -9,6 +9,16 @@
   --transition: 0.3s ease;
 }
 
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -16,9 +26,10 @@ body {
   color: var(--text-dark);
   transition: background-color var(--transition), color var(--transition);
   display: flex;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
+
 
 #sidebar {
   width: var(--sidebar-width);
@@ -56,6 +67,7 @@ body {
   background: rgba(123, 47, 247, 0.15);
 }
 
+
 #content {
   flex: 1;
   overflow-y: auto;
@@ -71,6 +83,18 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
+h1, h2, h3 {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+
+strong {
+  color: var(--purple-neon);
+}
+
+
 pre {
   background: #181420;
   color: #e8e6f3;
@@ -80,7 +104,17 @@ pre {
   font-family: monospace;
   border-left: 4px solid var(--purple-neon);
   transition: background var(--transition), color var(--transition), border var(--transition);
+
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
+pre code {
+  display: block;
+  max-width: 100%;
+  white-space: pre;
+}
+
 
 #topbar {
   position: fixed;
@@ -91,7 +125,7 @@ pre {
   background: rgba(20, 16, 27, 0.95);
   display: flex;
   align-items: center;
-  justify-content: space-between; 
+  justify-content: space-between;
   padding: 0 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: left var(--transition), background var(--transition);
@@ -114,7 +148,6 @@ pre {
 .top-buttons {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -134,6 +167,7 @@ pre {
   background: rgba(123,47,247,0.1);
   box-shadow: 0 0 6px rgba(159,68,211,0.4);
 }
+
 
 body.light {
   background: var(--bg-light);
@@ -156,13 +190,12 @@ body.light #sidebar a {
 
 body.light #sidebar a:hover {
   background: rgba(159,68,211,0.15);
-  color: #000;
 }
 
 body.light pre {
   background: #f2edf7;
   color: #222;
-  border-left: 4px solid #9f44d3;
+  border-left-color: #9f44d3;
 }
 
 body.light #topbar {
@@ -172,30 +205,12 @@ body.light #topbar {
 
 body.light .top-buttons button {
   color: #4a1472;
-  text-shadow: 0 0 6px rgba(159,68,211,0.7);
 }
 
-body.light .top-buttons button:hover {
-  color: #9f44d3;
-  background: rgba(159,68,211,0.1);
-  box-shadow: 0 0 8px rgba(159,68,211,0.6);
-}
-
-strong {
-  color: var(--purple-neon);
-}
-
-h1, h2, h3 {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.3px;
-}
 
 @media (max-width: 900px) {
   body {
     flex-direction: column;
-    overflow: visible;
   }
 
   #sidebar {
@@ -203,7 +218,6 @@ h1, h2, h3 {
     top: 60px;
     left: 0;
     height: calc(100% - 60px);
-    width: var(--sidebar-width);
     transform: translateX(-100%);
     z-index: 20;
     box-shadow: 4px 0 15px rgba(0,0,0,0.3);
@@ -216,31 +230,23 @@ h1, h2, h3 {
   #topbar {
     left: 0;
     width: 100%;
-    z-index: 25;
     padding: 0 16px;
-    justify-content: space-between;
-  }
-
-  #logo {
-    font-size: 1.1rem;
-  }
-
-  .top-buttons button {
-    font-size: 1.3rem;
+    z-index: 25;
   }
 
   #content {
-    padding: 80px 20px 40px 20px;
+    padding: 80px 20px 40px;
   }
 
-  pre {
-    font-size: 0.9rem;
+  pre code {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 }
 
 @media (max-width: 500px) {
   #content {
-    padding: 70px 14px 40px 14px;
+    padding: 70px 14px 40px;
   }
 
   pre {

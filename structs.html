@@ -1,73 +1,81 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta viewport="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zard Language — Structs & Impl</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div id="sidebar">
-    <h2>Zard Docs</h2>
-    <a href="index.html">Overview</a>
-    <a href="variables.html">Variables</a>
-    <a href="expression.html">Expressions</a>
-    <a href="if.html">If</a>
-    <a href="while.html">While</a>
-    <a href="lists.html">Lists</a>
-    <a href="structs.html" style="background: rgba(123,47,247,0.2);">Struct & Impl</a>
-    <a href="input.html">Input</a>
-    <a href="print.html">Print</a>
+<div id="sidebar">
+  <h2>Zard Docs</h2>
+  <a href="index.html">Overview</a>
+  <a href="variables.html">Variables</a>
+  <a href="expression.html">Expressions</a>
+  <a href="if.html">If</a>
+  <a href="while.html">While</a>
+  <a href="lists.html">Lists</a>
+  <a href="structs.html" style="background: rgba(123,47,247,0.2);">Struct & Impl</a>
+  <a href="input.html">Input</a>
+  <a href="print.html">Print</a>
+</div>
+
+<div id="content">
+
+<div id="topbar">
+  <div id="logo">Zard Language</div>
+
+  <div class="top-buttons">
+    <button id="toggleSidebar">☰</button>
+    <button id="toggleTheme">🌓</button>
   </div>
+</div>
 
-  <div id="content">
-    <div id="topbar">
-      <div id="logo">Zard Language</div>
-      <div class="top-buttons">
-        <button id="toggleSidebar">☰</button>
-        <button id="toggleTheme">🌓</button>
-      </div>
-    </div>
+<section>
 
-    <section id="structs">
-      <h1>Structs</h1>
+<h1>Structs</h1>
 
-      <p>
-        <strong>Structs</strong> in Zard are custom composite types that group related fields.
-        They may contain primitives, lists, or other structs recursively.
-        Structs are lightweight value-based constructs and form the foundation of user-defined data modeling.
-      </p>
+<p>
+<strong>Structs</strong> in Zard are composite types used to group related data.
+They can contain primitives, lists, or other structs recursively.
+</p>
 
-      <h2>Declaring a Struct</h2>
-      <pre><code class="language-zard">
+<h2>Declaring a Struct</h2>
+
+<pre><code class="language-zard">
 Struct Pessoa {
     string nome;
     int idade;
 }
-      </code></pre>
+</code></pre>
 
-      <h2>Nested Structs</h2>
-      <p>Structs can contain other structs:</p>
+<h2>Nested Structs</h2>
 
-      <pre><code class="language-zard">
+<pre><code class="language-zard">
 Struct Endereco {
     string rua;
     string cidade;
     Struct Pais pais;
 }
-      </code></pre>
+</code></pre>
 
-      <h2>Creating and Assigning Values</h2>
-      <pre><code class="language-zard">
+<h2>Assigning Values</h2>
+
+<pre><code class="language-zard">
 Pessoa p;
+
 p.nome = "Alice";
 p.idade = 22;
-      </code></pre>
+</code></pre>
 
-      <h2>Struct inside Struct</h2>
-      <pre><code class="language-zard">
+<h2>Struct inside Struct</h2>
+
+<pre><code class="language-zard">
 Endereco e;
+
 e.rua = "Rua Central";
 e.cidade = "São Paulo";
 
@@ -75,166 +83,228 @@ Pais brasil;
 brasil.nome = "Brasil";
 
 e.pais = brasil;
-      </code></pre>
+</code></pre>
 
-      <h2>List of Structs</h2>
-      <pre><code class="language-zard">
+<h2>List of Structs</h2>
+
+<pre><code class="language-zard">
 List<Pessoa> pessoas;
+
 pessoas.add(p);
-      </code></pre>
+</code></pre>
 
-      <hr>
+<hr>
 
-      <h1>Impl: Methods for Structs</h1>
+<h1>Impl: Methods for Structs</h1>
 
-      <p>
-        The <strong>impl</strong> block allows attaching functions (methods) directly to a struct,
-        enabling behaviors alongside data.  
-      </p>
+<p>
+The <strong>impl</strong> block allows attaching functions directly to a struct.
+This lets structs contain both <strong>data and behavior</strong>.
+</p>
 
-      <h2>About <code>s</code> — The Self Reference</h2>
-      <p>
-        Inside an <strong>impl</strong> block, Zard introduces a special implicit variable named
-        <strong><code>s</code></strong>.  
-      </p>
+<h2>The <code>s</code> Self Reference</h2>
 
-      <ul>
-        <li><code>s</code> is a <strong>reserved keyword</strong> of the language.</li>
-        <li>It always refers to the <strong>current struct instance</strong> the method is operating on.</li>
-        <li>It is equivalent to <strong><code>this</code> in Java</strong>, <strong>self</strong> in Python, or <strong>&self / &mut self</strong> in Rust.</li>
-        <li>It cannot be reassigned and cannot be shadowed.</li>
-      </ul>
+<p>
+Inside an <strong>impl</strong> block, Zard provides a reserved variable called <strong>s</strong>.
+</p>
 
-      <p>
-        Any field access or method call targeting the current struct instance must be accessed through <code>s</code>.
-      </p>
+<ul>
+<li><strong>s</strong> refers to the current struct instance.</li>
+<li>It is similar to <strong>this</strong> in Java.</li>
+<li>It cannot be reassigned.</li>
+<li>All fields of the struct should be accessed through <strong>s</strong>.</li>
+</ul>
 
-      <pre><code class="language-zard">
+<pre><code class="language-zard">
 impl Pessoa {
+
     function void hello() {
-        print("Hello from: ");
-        print(s.nome);   # accesses the struct field through 's'
+        print("Hello from:");
+        print(s.nome);
     }
+
 }
-      </code></pre>
+</code></pre>
 
-      <hr>
+<hr>
 
-      <h2>Basic Impl Example</h2>
+<h2>Basic Impl Example</h2>
 
-      <pre><code class="language-zard">
+<pre><code class="language-zard">
 Struct Pessoa {
     string nome;
     int idade;
 }
 
 impl Pessoa {
+
     function void hello() {
         print("Olá do método hello()");
     }
+
 }
 
 Pessoa p;
+
 p.nome = "Zard";
 p.idade = 22;
 
 p.hello();
-      </code></pre>
+</code></pre>
 
-      <h2>Returning the Struct (Method Chaining)</h2>
+<h2>Returning the Struct (Method Chaining)</h2>
 
-      <p>
-        Returning the struct itself allows <strong>method chaining</strong>.
-      </p>
+<p>
+Returning the struct itself enables <strong>method chaining</strong>.
+</p>
 
-      <pre><code class="language-zard">
+<pre><code class="language-zard">
 impl Pessoa {
+
     function Pessoa setName(string n) {
         s.nome = n;
         return s;
     }
+
 }
 
 Pessoa p;
+
 p.setName("Lucas")
 p.setName("Ana");
-      </code></pre>
+</code></pre>
 
-      <h2>Impl with Parametrized Structs</h2>
+<hr>
 
-      <pre><code class="language-zard">
+<h1>Inline Struct Update</h1>
+
+<p>
+Zard allows updating struct fields using an <strong>inline update block</strong>.
+This syntax lets you modify multiple fields of a struct (including nested structs)
+in a single expression.
+</p>
+
+<p>
+This feature is particularly useful for updating deeply nested structures
+without writing many individual assignments.
+</p>
+
+<h2>Example</h2>
+
+<pre><code class="language-zard">
+p2.endereco {
+    rua: "Nova Rua";
+    cidade: "Zurique";
+    pais {
+        nome: "Suíça";
+    }
+}
+</code></pre>
+
+<p>
+The block above updates the fields of <code>p2.endereco</code>.
+</p>
+
+<ul>
+<li><code>rua</code> becomes <strong>"Nova Rua"</strong></li>
+<li><code>cidade</code> becomes <strong>"Zurique"</strong></li>
+<li>The nested struct <code>pais</code> is also updated</li>
+<li>Inside <code>pais</code>, the field <code>nome</code> becomes <strong>"Suíça"</strong></li>
+</ul>
+
+<h2>Equivalent Manual Code</h2>
+
+<p>
+Without the inline update syntax, the same operation would require multiple assignments:
+</p>
+
+<pre><code class="language-zard">
+p2.endereco.rua = "Nova Rua";
+p2.endereco.cidade = "Zurique";
+p2.endereco.pais.nome = "Suíça";
+</code></pre>
+
+<hr>
+
+<h2>Complete Example</h2>
+
+<pre><code class="language-zard">
 main {
 
-  Struct Item {
-    int id;
-    string name;
-  }
-
-  Struct Set {
-    List&lt;Item&gt; data;
-  }
-
-  impl Set {
-
-    function addItem(int id, string name) {
-      Item it;
-      it.id = id;
-      it.name = name;
-      s.data.add(it);
-      return s;
+    Struct Pais {
+        string nome;
     }
 
-    function removeFirst() {
-      if (s.data.size() > 0) {
-        s.data.remove(0);
-      }
-      return s;
+    Struct Endereco {
+        string rua;
+        string cidade;
+        Struct Pais pais;
     }
 
-    function removeItemById(int id) {
-      int i = 0;
-      while (i < s.data.size()) {
-        Item cur = s.data.get(i);
-        if (cur.id == id) {
-          s.data.remove(i);
-          return s;
+    Struct Pessoa {
+        string nome;
+        int idade;
+        Struct Endereco endereco;
+        List<string> telefones;
+    }
+
+    Pais brasil;
+    brasil.nome = "Brasil";
+
+    Endereco e1;
+    e1.rua = "Rua A";
+    e1.cidade = "São Paulo";
+    e1.pais = brasil;
+
+    Pessoa p1;
+    p1.nome = "Alice";
+    p1.idade = 25;
+    p1.endereco = e1;
+
+    p1.telefones.add("11 99999-1111");
+    p1.telefones.add("11 22222-3333");
+
+
+    Pessoa p2;
+    p2 = p1;
+
+
+    p2.nome = "Zard";
+    p2.telefones.add("21 44444-5555");
+
+
+    print("=== Original p1 ===");
+    print(p1);
+
+
+    p2.endereco {
+        rua: "Nova Rua";
+        cidade: "Zurique";
+        pais {
+            nome: "Suíça";
         }
-        i++;
-      }
-      return s;
     }
 
-    function prints() {
-      int i = 0;
-      print("Set {");
-      while (i < s.data.size()) {
-        Item cur = s.data.get(i);
-        print("  Item {");
-        print("    id:");
-        print(cur.id);
-        print("    name:");
-        print(cur.name);
-        print("  }");
-        i++;
-      }
-      print("}");
-      return s;
-    }
+    print("=== Clone p2 ===");
+    print(p2);
 
-  }
-
-  Set<Item> items;
-  items.addItem(1, "Sword");
-  items.addItem(2, "Shield");
-  items.addItem(3, "Potion");
-  items.removeItemById(2);
-  items.prints();
 }
-      </code></pre>
+</code></pre>
 
-    </section>
-  </div>
+<h2>Why This Feature Exists</h2>
 
-  <script src="script.js"></script>
+<ul>
+<li>Reduces repetitive assignments</li>
+<li>Makes nested updates easier</li>
+<li>Improves readability</li>
+<li>Keeps updates localized in a single block</li>
+</ul>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
