@@ -1,113 +1,151 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zard Language — Overview</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zard Language — Overview</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div id="sidebar">
-    <h2>Zard Docs</h2>
-    <a href="index.html"style="background: rgba(123,47,247,0.2);"">Overview</a>
-    <a href="variables.html">Variables</a>
-    <a href="expression.html">Expressions</a>
-    <a href="if.html">If</a>
-    <a href="while.html">While</a>
-    <a href="lists.html">Lists</a>
-    <a href="function.html">Functions</a>
-    <a href="structs.html">Struct & Impl</a>
-    <a href="input.html">Input</a>
-    <a href="print.html">Print</a>
-  </div>
 
-  <div id="content">
-    <div id="topbar">
-      <div id="logo">Zard Language</div>
-      <div class="top-buttons">
-        <button id="toggleSidebar">☰</button>
-        <button id="toggleTheme">🌓</button>
-      </div>
-    </div>
+<div id="sidebar">
+<h2>Zard Docs</h2>
+<a href="index.html" style="background: rgba(123,47,247,0.2);">Overview</a>
+<a href="variables.html">Variables</a>
+<a href="expression.html">Expressions</a>
+<a href="if.html">If</a>
+<a href="while.html">While</a>
+<a href="lists.html">Lists</a>
+<a href="function.html">Functions</a>
+<a href="structs.html">Struct & Impl</a>
+<a href="input.html">Input</a>
+<a href="print.html">Print</a>
+</div>
 
-    <section id="overview">
-      <h1>Welcome to the Zard Language</h1>
-      <p>
-        The <strong>Zard Language</strong> is a modern, statically-typed programming language built from scratch with a strong integration to the LLVM toolchain.  
-        Its goal is to combine clarity, performance, and deep control — while maintaining elegant syntax and a flexible runtime.
-      </p>
+<div id="content">
 
-      <h2>Philosophy</h2>
-      <p>
-        Zard was designed with a dual focus: <em>readability</em> and <em>power</em>.  
-        Every construct — from structs and lists to functions and control flow — is designed to feel expressive, predictable, and close to native LLVM semantics.
-      </p>
-      <p>
-        The language is inspired by the efficiency of C, the structure of Rust, and the expressiveness of higher-level languages, but it keeps a unique identity grounded in its own philosophy and runtime.
-      </p>
+<div id="topbar">
+<div id="logo">Zard Language</div>
+<div class="top-buttons">
+<button id="toggleSidebar">☰</button>
+<button id="toggleTheme">🌓</button>
+</div>
+</div>
 
-      <h2> Key Principles</h2>
-      <ul>
-        <li><strong>Statically Typed:</strong> Every variable and function has a clear type known at compile time.</li>
-        <li><strong>LLVM Native:</strong> The compiler generates raw LLVM IR, ensuring portable and optimized native binaries.</li>
-        <li><strong>Runtime in C:</strong> A minimal, safe runtime written in C powers core data structures such as <code>List</code> and <code>Map</code>.</li>
-        <li><strong>Human-Friendly Syntax:</strong> Minimal punctuation, mixed readability between Java and C.</li>
-        <li><strong>Full Struct Support:</strong> Nested structs, lists of structs are integrate seamlessly.</li>
-      </ul>
+<section id="overview">
 
-      <h2> What Makes Zard Unique</h2>
-      <p>
-        Unlike most hobby languages, Zard doesn’t rely on a virtual machine.  
-        Instead, it compiles directly to <strong>LLVM IR</strong>, optimizing memory operations and allowing integration with C, Rust, and other native codebases.  
-      </p>
-      <p>
-        The language was crafted to serve as a foundation for building real-world software — from CLI tools to low-level systems — all while being expressive and approachable.
-      </p>
+<h1>Welcome to the Zard Language</h1>
 
-      <h2> Example Features (Covered in the Docs)</h2>
-      <ul>
-        <li> <strong>Syntax:</strong> Variable declarations, expressions, and control flow.</li>
-        <li> <strong>Structs:</strong> Custom types with nested fields.</li>
-        <li> <strong>Lists:</strong> Dynamic, typed collections with methods like <code>add</code>, <code>remove</code>, and <code>clear</code>.</li>
-        <li> <strong>LLVM Backend:</strong> Direct IR generation for native performance.</li>
-        <li> <strong>Runtime C Layer:</strong> Core memory-safe utilities and structures.</li>
-      </ul>
+<p>
+<strong>Zard</strong> is an experimental statically-typed programming language focused on
+<strong>deterministic memory management</strong>, predictable behavior, and a clean syntax
+designed for systems programming.
+</p>
 
-      <h2>Vision</h2>
-      <p>
-        Zard is not just a language – it is a platform for experimentation and learning.  
-        Its ultimate goal is to allow developers to write expressive programs with readability and control for multiple platforms.  
-        Whether for language design exploration or serious development, Zard aims to be the perfect vehicle for creativity.
-      </p>
+<p>
+The language design and compiler are actively developed as part of the Zard project.
+The current compiler frontend is implemented in <strong>Java</strong>, where the source code
+is parsed and transformed into an Abstract Syntax Tree (AST).
+</p>
 
-            <h2>Future and Roadmap</h2>
-      <p>
-        Although Zard currently focuses on desktop and native compilation via LLVM, its long-term goal extends far beyond.  
-        Several experimental subsets of the language have already been tested successfully on <strong>microcontrollers</strong> and embedded devices,  
-        proving that Zard’s design can adapt to low-level environments with minimal overhead.
-      </p>
+<p>
+From this representation, the compiler generates <strong>LLVM IR</strong>, allowing the
+creation of optimized native binaries through the LLVM toolchain.
+</p>
 
-      <p>
-        In the future, the project aims to introduce a dedicated <strong>Zard Embedded Profile</strong> —  
-        a lightweight runtime and compiler mode tailored for constrained systems such as ARM-based boards, IoT devices, and microcontrollers.  
-        This profile will preserve the clarity of Zard’s syntax while offering deterministic memory control and hardware-level access.
-      </p>
+<h2>Goals</h2>
 
-      <p>
-        The vision is to make Zard a unified language capable of scaling from high-level application logic down to bare-metal environments —  
-        bringing the same expressive syntax to every layer of development.
-      </p>
+<p>
+Zard is designed as a learning and experimentation platform for building a modern
+systems language. The main goals of the project are:
+</p>
 
-      <ul>
-        <li> Planned: Low-level runtime profile for embedded systems</li>
-        <li> Experimental: LLVM-based subset for microcontrollers</li>
-        <li> Future Goal: Cross-compilation pipeline for RISC-V and other targets</li>
-      </ul>
-      <p><em>“From high-level clarity to low-level precision — Zard is built to evolve.”</em></p>
+<ul>
+<li>Create a language with <strong>deterministic memory behavior</strong>.</li>
+<li>Avoid uncontrolled reference sharing between objects.</li>
+<li>Encourage <strong>clear ownership of data</strong> rather than implicit aliasing.</li>
+<li>Maintain a <strong>simple and readable syntax</strong>.</li>
+<li>Generate efficient native code through the LLVM toolchain.</li>
+</ul>
 
-    </section>
-  </div>
+<h2>Memory Philosophy</h2>
 
-  <script src="script.js"></script>
+<p>
+One of the central ideas behind Zard is that memory ownership should be explicit
+and predictable. Instead of allowing references to be freely shared across the
+program, the language encourages a model where objects have a clear owner and
+their lifetime can be determined by the compiler.
+</p>
+
+<p>
+This approach aims to reduce common problems such as memory leaks, dangling
+references, and unpredictable object lifetimes while still allowing low-level
+control when necessary.
+</p>
+
+<h2>Design Principles</h2>
+
+<ul>
+<li><strong>Statically Typed:</strong> Types are known at compile time.</li>
+<li><strong>Deterministic Memory:</strong> Object lifetimes are predictable and controlled.</li>
+<li><strong>Simple Syntax:</strong> The language avoids unnecessary punctuation and complex constructs.</li>
+<li><strong>Native Compilation:</strong> Code is compiled to LLVM IR and then to native binaries.</li>
+<li><strong>Clear Data Ownership:</strong> Data structures aim to minimize uncontrolled reference sharing.</li>
+</ul>
+
+<h2>Core Features</h2>
+
+<p>
+Zard currently focuses on a small but expressive set of language constructs.
+</p>
+
+<ul>
+<li><strong>Variables and Expressions</strong> with static typing.</li>
+<li><strong>Control Flow</strong> including <code>if</code> and <code>while</code>.</li>
+<li><strong>Structs</strong> for defining custom data types.</li>
+<li><strong>Lists</strong> as dynamic collections provided by the runtime.</li>
+<li><strong>Functions</strong> with typed parameters and return values.</li>
+</ul>
+
+<h2>Runtime</h2>
+
+<p>
+Some core structures, such as dynamic lists, are implemented in a small runtime
+written in <strong>C</strong>. This keeps the runtime simple while allowing the language
+to interact naturally with low-level memory operations.
+</p>
+
+<p>
+Over time, the project may explore deeper interoperability with languages such
+as <strong>C</strong> and <strong>Rust</strong>, but this is currently a long-term objective rather
+than a stable feature.
+</p>
+
+<h2>Project Scope</h2>
+
+<p>
+Zard is primarily aimed at exploring the design of a modern
+<strong>systems programming language</strong>. The focus is on understanding how
+language features, memory management strategies, and compiler design interact
+in practice.
+</p>
+
+<p>
+The language prioritizes clarity and predictability over feature count,
+keeping the core model simple while allowing experimentation with compiler
+techniques and runtime design.
+</p>
+
+<p><em>Zard is a language for exploring how far simplicity and deterministic
+memory models can go in systems programming.</em></p>
+
+</section>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
